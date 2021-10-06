@@ -32,7 +32,7 @@ while True:
 
             prediction = classifier.predict(roi)[0]
             label=emotion_labels[prediction.argmax()]
-           
+            label_position = (x,y)
             cv2.putText(frame,label,label_position,cv2.FONT_HERSHEY_SIMPLEX,1,(0,255,0),2)
         else:
             cv2.putText(frame,'No Faces',(30,80),cv2.FONT_HERSHEY_SIMPLEX,1,(0,255,0),2)
