@@ -7,7 +7,7 @@ import numpy as np
 face_classifier = cv2.CascadeClassifier(r'E:\Programming\facial recog\haarcascade_frontalface_default.xml')
 classifier =load_model(r'E:\Programming\facial recog\model.h5')
 
-emotion_labels = ['Angry','Disgust','Fear','Happy','Neutral', 'Sad', 'Surprise']
+emotion_labels = ['Angry','Disgust','Fear','Happy','Neutral', 'Frown', 'Surprise']
 
 cap = cv2.VideoCapture(0)
 
