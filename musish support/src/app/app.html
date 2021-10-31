@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <% if (htmlWebpackPlugin.options.env.GA_PROPERTY_ID){ %>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=<%= htmlWebpackPlugin.options.env.GA_PROPERTY_ID %>"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', '<%= htmlWebpackPlugin.options.env.GA_PROPERTY_ID %>');
+        </script>
+    <% } %>
+
+    <meta name="Description" content="Musish - The open source Apple Music web player. Listen now.">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <title><%= htmlWebpackPlugin.options.title %></title>
+</head>
+<body>
+    <div id="app-root"></div>
+    <script src="https://js-cdn.music.apple.com/musickit/v1/musickit.js"></script>
+</body>
+</html>

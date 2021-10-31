@@ -1,0 +1,44 @@
+service: musish
+
+custom:
+  secrets: ${file(secrets.json)}
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  stage: ${self:custom.secrets.NODE_ENV}
+  region: us-east-1
+
+functions:
+  landing:
+    handler: landing/landing.landing
+    events:
+      - http:
+          path: /
+          method: get
+  browse-charts:
+    handler: browse/browse.charts
+    events:
+      - http:
+          path: /browse/charts
+          method: get
+  browse-playlists:
+    handler: browse/browse.playlists
+    events:
+      - http:
+          path: /browse/playlists
+          method: get
+  genius-song:
+    handler: genius/song.details
+    events:
+      - http:
+          path: /genius/song
+          method: get
+          cors: true
+  genius-artist:
+    handler: genius/artist.details
+    events:
+      - http:
+          path: /genius/artist
+          method: get
+          cors: true

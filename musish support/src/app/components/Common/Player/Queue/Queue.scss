@@ -1,0 +1,181 @@
+@import "../../../../assets/styles/settings/colors";
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 320px;
+  height: 400px;
+  margin-top: -200px;
+  margin-left: -137.5px;
+  z-index: 2000;
+  overflow: hidden;
+  background: $background_color;
+  border-radius: 8px;
+  box-shadow: 0 8px 36px -10px rgba(150, 150, 150, 0.75);
+  animation: fadein 0.1s;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  height: 45px;
+  display: flex;
+  flex-direction: row;
+  background: $accent_color;
+  color: $background_color;
+  cursor: pointer;
+  padding: 0 15px;
+  flex-shrink: 0;
+  flex-grow: 0;
+
+  > div {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    -webkit-touch-callout: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+
+    &.title {
+      flex: 1;
+      font-weight: 600;
+      font-size: 16px;
+    }
+
+    &.icons {
+      font-size: 16px;
+      color: $background_color;
+      cursor: pointer;
+      margin-left: 20px;
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.QueueList {
+  position: relative;
+  width: 400px;
+  padding: 0;
+}
+
+.queueItem {
+  display: flex;
+  width: 100%;
+  height: 54px;
+  margin-top: 1px;
+  border-bottom: 1px solid #efefef;
+  background: $background_color;
+  color: #333333;
+  z-index: 10000;
+
+  box-sizing: border-box;
+
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  &.played {
+    color: #999999;
+  }
+
+  &.playing {
+    color: $accent_color;
+    font-weight: 500;
+  }
+
+  > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .notSortable {
+    cursor: default;
+  } // Reference class for non-sortable child elements
+
+  .albumArtwork {
+    display: flex;
+    align-items: center;
+    position: relative;
+    border-radius: 3px;
+    padding-left: 10px;
+
+    .artworkWrapper {
+      border-radius: 3px;
+      width: 40px;
+      height: 40px;
+      background: #fafafa;
+
+      img {
+        border-radius: inherit;
+        width: inherit;
+        height: inherit;
+      }
+    }
+  }
+
+  .queueItemInfo {
+    flex: 1;
+    overflow: hidden;
+    white-space: nowrap;
+
+    > span {
+      display: block;
+      width: 100%;
+      margin-left: 15px;
+
+      &.title {
+        margin-top: 5px;
+        font-size: 14px;
+        line-height: 14px;
+      }
+
+      &.description {
+        font-size: 12px;
+        line-height: 12px;
+        color: $secondary_color;
+      }
+    }
+  }
+
+  .removeButton {
+    > i {
+      padding: 5px 5px;
+      margin-right: 15px;
+      margin-left:5px;
+      color: $background_color;
+      cursor: pointer;
+      transition: color 0.1s;
+    }
+  }
+
+  &:hover {
+    .removeButton {
+      i {
+        color: $accent_color;
+      }
+    }
+  }
+}
+
+.sortableHelper {
+  cursor: row-resize;
+  z-index: 10001;
+}
