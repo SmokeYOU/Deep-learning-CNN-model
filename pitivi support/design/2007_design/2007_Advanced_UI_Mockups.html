@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<base href="../..">
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<title>2007 Advanced UI</title>
+
+<link rel="stylesheet" href="assets/css/custom_bootstrap.css" type="text/css">
+<link rel="stylesheet" href="assets/css/bootstrap-toc.min.css" type="text/css">
+<link rel="stylesheet" href="assets/css/frontend.css" type="text/css">
+<link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css">
+
+<link rel="stylesheet" href="assets/css/prism.css" type="text/css">
+
+<script src="assets/js/mustache.min.js"></script>
+<script src="assets/js/jquery.js"></script>
+<script src="assets/js/scrollspy.js"></script>
+<script src="assets/js/bootstrap.js"></script>
+<script src="assets/js/typeahead.jquery.min.js"></script>
+<script src="assets/js/search.js"></script>
+<script src="assets/js/isotope.pkgd.min.js"></script>
+<script src="assets/js/compare-versions.js"></script>
+<script src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="assets/js/bootstrap-toc.min.js"></script>
+<script src="assets/js/jquery.touchSwipe.min.js"></script>
+<script src="assets/js/anchor.min.js"></script>
+<script src="assets/js/tag_filtering.js"></script>
+<script src="assets/js/language_switching.js"></script>
+
+<script src="assets/js/lines_around_headings.js"></script>
+
+<script src="assets/js/trie.js"></script>
+<script src="assets/js/prism-core.js"></script>
+<script src="assets/js/prism-autoloader.js"></script>
+<script src="assets/js/prism_autoloader_path_override.js"></script>
+
+<link rel="shortcut icon" href="assets/images/favicon.png">
+
+</head>
+
+<body class="no-script
+" data-spy="scroll" data-target="#toc" data-offset="70">
+
+<script>
+$('body').removeClass('no-script');
+</script>
+
+<nav class="navbar navbar-fixed-top navbar-default" id="topnav">
+	<div class="container-fluid">
+		<div class="navbar-right">
+			<a id="toc-toggle">
+				<span class="glyphicon glyphicon-menu-right"></span>
+				<span class="glyphicon glyphicon-menu-left"></span>
+			</a>
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-wrapper" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<form action="" class="navbar-form pull-right" id="navbar-search-form">
+                               <div class="form-group has-feedback">
+                                       <input type="text" class="form-control input-sm" name="search" id="sidenav-lookup-field" placeholder="search" disabled>
+				       <span class="glyphicon glyphicon-search form-control-feedback" id="search-mgn-glass"></span>
+                               </div>
+                        </form>
+		</div>
+		<div class="navbar-header">
+			<a id="sidenav-toggle">
+				<span class="glyphicon glyphicon-menu-right"></span>
+				<span class="glyphicon glyphicon-menu-left"></span>
+			</a>
+			<a id="home-link" href="index.html" class="hotdoc-navbar-brand">
+				<img src="assets/images/pitivi.svg" alt="Home">
+			</a>
+		</div>
+		<div class="navbar-collapse collapse" id="navbar-wrapper">
+			<ul class="nav navbar-nav" id="menu">
+							</ul>
+			<div class="hidden-xs hidden-sm navbar-text navbar-center">
+				<p><b>The Pitivi Developer Documentation</b></p>
+			</div>
+		</div>
+	</div>
+</nav>
+
+<main>
+<div data-extension="core" data-hotdoc-in-toplevel="True" data-hotdoc-project="Pitivi" data-hotdoc-ref="design/2007_design/2007_Advanced_UI_Mockups.html" class="page_container" id="page-wrapper">
+<script src="assets/js/utils.js"></script>
+
+<div class="panel panel-collapse oc-collapsed" id="sidenav" data-hotdoc-role="navigation">
+	<script src="assets/js/navigation.js"></script>
+	<script src="assets/js/sitemap.js"></script>
+</div>
+
+<div id="body">
+	<div id="main">
+				    <div id="page-description" data-hotdoc-role="main">
+        <h1 id="2007-advanced-ui">2007 Advanced UI</h1>
+<p>Also known as Brandon's Design.</p>
+<h2 id="basic-design">Basic Design</h2>
+<p>In basic design goal is to provide as much direct-manipulation as
+possible. In this case, properties interpolation graphs are overlaid
+atop source widgets directly. The properties can be shown/hidden with
+the property selection popup at the bottom of the source. In addition,
+the interpolation mode can be set for the currently selected
+interpolation graph. The interpolation graph is manipulated with
+“keyframes” which are dragable handles that adjust the timestamp and
+keyframe.</p>
+<ul>
+<li>When a source in the timeline moves, the viewer needs to seek just
+before that source's in point in the timeline.</li>
+<li>When the user adjusts the in-point or out-point of a source, the
+viewer needs to seek to the new in or out point in the source</li>
+<li>When the user adjusts a keyframe, the viewer needs to seek to that
+point in the timeline and show the user a preview of the change</li>
+</ul>
+<p><img src="design/2007_design/images/Advaced_ui_separated_keyframes.png" alt=""></p>
+<h2 id="separatedkeyframes-variant">Separated-keyframes variant</h2>
+<p>The basic design doesn't address the problem of keyframes in
+SimpleEffects, which don't have room to display interpolation graphs. In
+this variant, the keyframe interpolation graphs have been moved directly
+below the timeline. Selecting any object (or group of objects, the
+color-balance effect in this mock-up is selected) causes its properties
+to be displayed in the property editing region below. Not shown are the
+key-frame handles, which would not become visible until objects within
+the key-frame window are selected.</p>
+<p>All keyframed properties are initially flat lines. These lines can be
+moved up or down simply by clicking/dragging.</p>
+<p>At this point it is not yet clear which variant would be preferable. It
+is also not yet clear how the user will add or remove key-frames.
+Possibilities are:</p>
+<ul>
+<li>click directly on the graph and a new keyframe appears if one hasn't
+been created (means that the line as a whole isn't movable. have to
+select both end-points)</li>
+<li>select a keyfame then click “add” (user can't control where new
+frame is added, so a second adjustment step is required)</li>
+</ul>
+<p><img src="design/2007_design/images/Advaced_ui_separated_keyframes.png" alt=""></p>
+<h2 id="expandedcontracted-variant">Expanded/Contracted Variant</h2>
+<p>The similar to the basic design, but objects can be expanded to take up
+a maximal amount of screen space. This extra space is used to display
+the interpolation graphs.</p>
+<p><img src="design/2007_design/images/Advanced_ui_expanded_contracted.png" alt=""></p>
+<h1 id="kiddos-design">Kiddo's Design</h1>
+<h2 id="general-timeline-overview">General Timeline Overview</h2>
+<p>Features in this mockup:</p>
+<ul>
+<li>nice looking clips representation on the timeline, maybe in cairo?</li>
+<li>arrows on the left and right sides of the clips to allow setting the
+beginning/end (only works in the advanced timeline, because the
+clips' widths are proportional to their duration). If the user zooms
+out or the clip is too short, these arrows should “squeeze”
+themselves, and, below a certain threshold, disappear completely.
+The user will still be able to manipulate the begin/end points by
+dragging the sides (borders) of the clip.</li>
+<li>thumbnails displayed when enough space is available <em>and when the
+user has not deactivated them in the preferences</em>
+</li>
+<li>notice how the proportions of the various components of the UI are
+different from the simple timeline. Here, the video preview and
+media library are smaller, pushed to the top, to leave a lot more
+space for the timeline itself. In a multitrack non-linear editor,
+you want the timeline to be the main zone of interaction and
+maximize the amount of space you have to play with it</li>
+<li>waveform previews for audio, ripped straight out of
+<a href="http://www.jokosher.org">Jokosher</a>
+</li>
+<li>the layer buttons on the left are there just for making the mockup
+look less empty, they should be replaced by relevant ones</li>
+<li>notice the transition indicators on the bottom clip and the
+top-right clip: some white “curve” allows you to see the speed of
+transitions such as crossfades and fade-in/out</li>
+<li>the clip displayed on the layer “bg actors” has a motion curve (the
+thing called “velocity curve” in Vegas Video). You might want to
+look at Jokosher's code that was used for their audio volume curves,
+it would be great to be able to control the volume/opacity/speed of
+an audio/video clip using curves everywhere as “keyframes”.</li>
+<li>this user interface's <strong>audio and video tracks are separated</strong>. Do
+not be fooled by the looks. It was just me being lazy (and
+forgetting to show audio tracks everywhere). Basically, what you are
+seeing in this mockup is a bunch of “silent clips with no audio” (or
+clips whose audio tracks were removed in favor of one sound track)</li>
+<li>“pyrotechs” and “bg actors” are just track “names” (or “labels”)</li>
+<li>this was made from a screenshot of the French version of pitivi, so
+a few terms might seem odd. For example “Piste vidéo” means “Video
+track”.</li>
+<li>this whole timeline is *HUGE*. This would be in a case where the
+user has big toolbars in his gnome preferences, and where he
+stretched up the layer's height (because, realistically, the layer
+heights should be maybe ½ of that to avoid eating up too much screen
+height).</li>
+</ul>
+<p><img src="Pitivi-advanced-mockup.png" alt="" title="Pitivi-advanced-mockup.png"></p>
+<p>I would be a strong proponent in favor of <strong>having only one timeline for
+PiTiVi, the advanced one</strong>. I mean, I really don't think that a
+multitrack UI like that is harder than the “imovie-simplified like”
+counterpart. This multitrack interface <strong>is</strong> scalable from the newbie
+to the professional, <em>if</em> you design, <em>think</em> the user interface really
+well (you can leave that to me ;). <strong>I believe a “direct manipulation”
+multitrack “time-proportional” timeline interface kicks the hell out of
+the current “simplified interface”</strong>, and will need no significant
+learning curve, even for grandma. The rest can be done with nice
+tutorial screencasts that I would gladly provide, and that would give
+the advantage of not splitting the coding workforce over two timelines.
+Do one thing, and do it so well that grandma's jaw drops (not from
+natural cause)! --<a href="User:Kiddo.md">Kiddo</a> 23:28, 10 June 2007
+(BST)</p>
+
+    </div>
+        
+
+
+
+
+		<div id="subpages">
+	<p><b>Subpages:</b></p>
+			<p>
+		<a href="design/2007_design/2007_Advanced_UI_implementation.html">Implementation</a>
+		–
+					<i><em>No description available</em></i>
+				</p>
+	</div>
+	</div>
+	<div id="search_results">
+		<p>The results of the search are</p>
+	</div>
+	<hr>
+	<div id="footer">
+		    
+
+	</div>
+</div>
+
+<div id="toc-column">
+	
+		<div class="edit-button">
+		<a href="https://gitlab.gnome.org/GNOME/pitivi/edit/master/docs/design/2007_design/2007_Advanced_UI_Mockups.md" data-hotdoc-role="edit-button">Edit on GitLab</a>
+
+	</div>
+		<div id="toc-wrapper">
+		<nav id="toc"></nav>
+	</div>
+</div>
+</div>
+</main>
+
+</body>
+
+<script src="assets/js/navbar_offset_scroller.js"></script>
+</html>

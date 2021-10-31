@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<base href="../..">
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<title>2008 Jog and Shuttle controls</title>
+
+<link rel="stylesheet" href="assets/css/custom_bootstrap.css" type="text/css">
+<link rel="stylesheet" href="assets/css/bootstrap-toc.min.css" type="text/css">
+<link rel="stylesheet" href="assets/css/frontend.css" type="text/css">
+<link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css">
+
+<link rel="stylesheet" href="assets/css/prism.css" type="text/css">
+
+<script src="assets/js/mustache.min.js"></script>
+<script src="assets/js/jquery.js"></script>
+<script src="assets/js/scrollspy.js"></script>
+<script src="assets/js/bootstrap.js"></script>
+<script src="assets/js/typeahead.jquery.min.js"></script>
+<script src="assets/js/search.js"></script>
+<script src="assets/js/isotope.pkgd.min.js"></script>
+<script src="assets/js/compare-versions.js"></script>
+<script src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="assets/js/bootstrap-toc.min.js"></script>
+<script src="assets/js/jquery.touchSwipe.min.js"></script>
+<script src="assets/js/anchor.min.js"></script>
+<script src="assets/js/tag_filtering.js"></script>
+<script src="assets/js/language_switching.js"></script>
+
+<script src="assets/js/lines_around_headings.js"></script>
+
+<script src="assets/js/trie.js"></script>
+<script src="assets/js/prism-core.js"></script>
+<script src="assets/js/prism-autoloader.js"></script>
+<script src="assets/js/prism_autoloader_path_override.js"></script>
+
+<link rel="shortcut icon" href="assets/images/favicon.png">
+
+</head>
+
+<body class="no-script
+" data-spy="scroll" data-target="#toc" data-offset="70">
+
+<script>
+$('body').removeClass('no-script');
+</script>
+
+<nav class="navbar navbar-fixed-top navbar-default" id="topnav">
+	<div class="container-fluid">
+		<div class="navbar-right">
+			<a id="toc-toggle">
+				<span class="glyphicon glyphicon-menu-right"></span>
+				<span class="glyphicon glyphicon-menu-left"></span>
+			</a>
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-wrapper" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<form action="" class="navbar-form pull-right" id="navbar-search-form">
+                               <div class="form-group has-feedback">
+                                       <input type="text" class="form-control input-sm" name="search" id="sidenav-lookup-field" placeholder="search" disabled>
+				       <span class="glyphicon glyphicon-search form-control-feedback" id="search-mgn-glass"></span>
+                               </div>
+                        </form>
+		</div>
+		<div class="navbar-header">
+			<a id="sidenav-toggle">
+				<span class="glyphicon glyphicon-menu-right"></span>
+				<span class="glyphicon glyphicon-menu-left"></span>
+			</a>
+			<a id="home-link" href="index.html" class="hotdoc-navbar-brand">
+				<img src="assets/images/pitivi.svg" alt="Home">
+			</a>
+		</div>
+		<div class="navbar-collapse collapse" id="navbar-wrapper">
+			<ul class="nav navbar-nav" id="menu">
+							</ul>
+			<div class="hidden-xs hidden-sm navbar-text navbar-center">
+				<p><b>The Pitivi Developer Documentation</b></p>
+			</div>
+		</div>
+	</div>
+</nav>
+
+<main>
+<div data-extension="core" data-hotdoc-in-toplevel="True" data-hotdoc-project="Pitivi" data-hotdoc-ref="design/2008_design/2008_Jog_and_Shuttle_controls_design.html" class="page_container" id="page-wrapper">
+<script src="assets/js/utils.js"></script>
+
+<div class="panel panel-collapse oc-collapsed" id="sidenav" data-hotdoc-role="navigation">
+	<script src="assets/js/navigation.js"></script>
+	<script src="assets/js/sitemap.js"></script>
+</div>
+
+<div id="body">
+	<div id="main">
+				    <div id="page-description" data-hotdoc-role="main">
+        <h2 id="2008-jog-and-shuttle-controls">2008 Jog and Shuttle controls</h2>
+<p>This is just a proposal for bringing frame seeking to the user interface
+in advanced mode. If you want to follow the development progress read
+<a href="design/2008_design/2008_Jog_and_Shuttle_controls_code_experiment.html">2008 Jog and Shuttle controls code
+experiment</a></p>
+<h2 id="screen-mockups">Screen Mockups</h2>
+<h3 id="with-standard-gtk-controls">With standard gtk controls</h3>
+<p><img src="Frame_player.png" alt="" title="Frame_player.png"></p>
+<h3 id="with-a-custom-jog-control">With a custom jog control</h3>
+<p><img src="Frame_player_jog.png" alt="" title="Frame_player_jog.png"></p>
+<p>Glade source file is available upon request.</p>
+<h2 id="implementation">Implementation</h2>
+<h3 id="controls">Controls</h3>
+<ul>
+<li>current: a linkbutton control with which a random position can be
+manually entered</li>
+<li>zoom: this is of lower priority which allows to set the zooming
+level of the image (either fit or a percentage)</li>
+<li>total: total time of the clip</li>
+<li>jog: with the left mouse down you can jump to previous frames by
+moving left or to next frames by moving right</li>
+<li>shuttle: with the left mouse down you can rewind or forward with
+variable speeds</li>
+</ul>
+<p>The current and total controls should be able to display in units of
+frames or time.</p>
+<h3 id="steps">Steps</h3>
+<ol>
+<li>current &amp; total</li>
+<li>jog (not custom control)</li>
+<li>shuttle</li>
+<li>refactor so that it can work as a widget independently of pitivi
+with plain pipelines</li>
+<li>zoom</li>
+<li>jog (as custom control)</li>
+</ol>
+<h2 id="about-myself">About myself</h2>
+<p>I am willing to work on this but will need mentoring. My background:</p>
+<ul>
+<li>graduated as architect and visual/video artist (I care about
+aesthetics and UI design)</li>
+<li>experience of python (no C or C++)</li>
+<li>plenty of gui experience with wxpython</li>
+<li>author of SPE (Python IDE - <a href="http://pythonide.stani.be">http://pythonide.stani.be</a>), Phatch
+(Photo Batch Processor - <a href="http://photobatch.stani.be">http://photobatch.stani.be</a>) &amp; sdxf.</li>
+<li>new to pygtk and gstreamer -&gt; mentoring needed</li>
+<li>I don't have a lot of time so I prefer to focus on something I need
+myself and I can finish</li>
+<li>working on ubuntu</li>
+</ul>
+
+    </div>
+        
+
+
+
+
+		<div id="subpages">
+	<p><b>Subpages:</b></p>
+			<p>
+		<a href="design/2008_design/2008_Jog_and_Shuttle_controls_code_experiment.html">Code Experiment</a>
+		–
+					<i><em>No description available</em></i>
+				</p>
+	</div>
+	</div>
+	<div id="search_results">
+		<p>The results of the search are</p>
+	</div>
+	<hr>
+	<div id="footer">
+		    
+
+	</div>
+</div>
+
+<div id="toc-column">
+	
+		<div class="edit-button">
+		<a href="https://gitlab.gnome.org/GNOME/pitivi/edit/master/docs/design/2008_design/2008_Jog_and_Shuttle_controls_design.md" data-hotdoc-role="edit-button">Edit on GitLab</a>
+
+	</div>
+		<div id="toc-wrapper">
+		<nav id="toc"></nav>
+	</div>
+</div>
+</div>
+</main>
+
+</body>
+
+<script src="assets/js/navbar_offset_scroller.js"></script>
+</html>

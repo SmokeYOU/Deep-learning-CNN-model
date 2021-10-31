@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<base href="..">
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<title>UI Implementation</title>
+
+<link rel="stylesheet" href="assets/css/custom_bootstrap.css" type="text/css">
+<link rel="stylesheet" href="assets/css/bootstrap-toc.min.css" type="text/css">
+<link rel="stylesheet" href="assets/css/frontend.css" type="text/css">
+<link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css">
+
+<link rel="stylesheet" href="assets/css/prism.css" type="text/css">
+
+<script src="assets/js/mustache.min.js"></script>
+<script src="assets/js/jquery.js"></script>
+<script src="assets/js/scrollspy.js"></script>
+<script src="assets/js/bootstrap.js"></script>
+<script src="assets/js/typeahead.jquery.min.js"></script>
+<script src="assets/js/search.js"></script>
+<script src="assets/js/isotope.pkgd.min.js"></script>
+<script src="assets/js/compare-versions.js"></script>
+<script src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="assets/js/bootstrap-toc.min.js"></script>
+<script src="assets/js/jquery.touchSwipe.min.js"></script>
+<script src="assets/js/anchor.min.js"></script>
+<script src="assets/js/tag_filtering.js"></script>
+<script src="assets/js/language_switching.js"></script>
+
+<script src="assets/js/lines_around_headings.js"></script>
+
+<script src="assets/js/trie.js"></script>
+<script src="assets/js/prism-core.js"></script>
+<script src="assets/js/prism-autoloader.js"></script>
+<script src="assets/js/prism_autoloader_path_override.js"></script>
+
+<link rel="shortcut icon" href="assets/images/favicon.png">
+
+</head>
+
+<body class="no-script
+" data-spy="scroll" data-target="#toc" data-offset="70">
+
+<script>
+$('body').removeClass('no-script');
+</script>
+
+<nav class="navbar navbar-fixed-top navbar-default" id="topnav">
+	<div class="container-fluid">
+		<div class="navbar-right">
+			<a id="toc-toggle">
+				<span class="glyphicon glyphicon-menu-right"></span>
+				<span class="glyphicon glyphicon-menu-left"></span>
+			</a>
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-wrapper" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<form action="" class="navbar-form pull-right" id="navbar-search-form">
+                               <div class="form-group has-feedback">
+                                       <input type="text" class="form-control input-sm" name="search" id="sidenav-lookup-field" placeholder="search" disabled>
+				       <span class="glyphicon glyphicon-search form-control-feedback" id="search-mgn-glass"></span>
+                               </div>
+                        </form>
+		</div>
+		<div class="navbar-header">
+			<a id="sidenav-toggle">
+				<span class="glyphicon glyphicon-menu-right"></span>
+				<span class="glyphicon glyphicon-menu-left"></span>
+			</a>
+			<a id="home-link" href="index.html" class="hotdoc-navbar-brand">
+				<img src="assets/images/pitivi.svg" alt="Home">
+			</a>
+		</div>
+		<div class="navbar-collapse collapse" id="navbar-wrapper">
+			<ul class="nav navbar-nav" id="menu">
+							</ul>
+			<div class="hidden-xs hidden-sm navbar-text navbar-center">
+				<p><b>The Pitivi Developer Documentation</b></p>
+			</div>
+		</div>
+	</div>
+</nav>
+
+<main>
+<div data-extension="core" data-hotdoc-in-toplevel="True" data-hotdoc-project="Pitivi" data-hotdoc-ref="design/UI_Implementation.html" class="page_container" id="page-wrapper">
+<script src="assets/js/utils.js"></script>
+
+<div class="panel panel-collapse oc-collapsed" id="sidenav" data-hotdoc-role="navigation">
+	<script src="assets/js/navigation.js"></script>
+	<script src="assets/js/sitemap.js"></script>
+</div>
+
+<div id="body">
+	<div id="main">
+				    <div id="page-description" data-hotdoc-role="main">
+        <h1 id="ui-implementation">UI Implementation</h1>
+<p>This document <strong>does not reflect the existing codebase</strong>, but rather a
+road map for future development, and a general introduction to the
+PiTiVi design philosophy.</p>
+<h1 id="todo">Todo</h1>
+<ul>
+<li>document markers</li>
+<li>document keyframes</li>
+<li>explain the concept of a receiver.</li>
+</ul>
+<h1 id="concepts">Concepts</h1>
+<p>The goal of the design is to build a UI which supports the following
+features:</p>
+<ul>
+<li>basic editing</li>
+<li>basic effects</li>
+<li>compositing</li>
+<li>multi-track editing</li>
+<li>multi-layer editing*</li>
+<li>multiple selection</li>
+<li>noun-verb interaction</li>
+<li>direct manipulation wherever possible</li>
+<li>leaving behavior up to the core implementation</li>
+</ul>
+<p>(*) It is important to distinguish between a <strong>track</strong>, and a <strong>layer</strong>
+in application terminology. Existing video editors use the term
+<strong>track</strong> to refer to a UI object which represents a stream of video
+with a sequence of sources. PiTiVi refers to this as a <strong>composition</strong>.
+The term <strong>track</strong> in PiTiVi means a separate channel of output: for
+example, audio and video are in separate tracks.</p>
+<p>This is distinguished from the concept of a <strong>layer</strong> which is directly
+related to the notion of <strong>compositing</strong>. Within a track, sources have a
+property called <strong>priority</strong> which determines what will appear when the
+play-head reaches a given position in the timeline. By default, the
+source with the lowest numerical priority is displayed. Adding effects
+to a composition enables multiple sources to be composited together.
+Priority is used to determine which sources will be used by an effect as
+input.</p>
+<h2 id="the-mvcobserver-design-pattern">The MVC/Observer Design Pattern</h2>
+<p>PiTiVi relies heavily on MVC and Observer design patterns to decouple
+the core of the application from the user interface. Core objects emit
+signals which prompt changes in the UI. UI elements wrap core objects to
+manipulate data, which in turn emit signals. The observer pattern allows
+the user interface to listen for changes in the core without coupling
+the core to the UI.</p>
+<p>In core, we have our own pure-python implementation of “signals”. The
+user interface depends on pygtk and pygoocanvas, both of which are based
+on GObject. We use “receivers” to automatically connect appropriate
+signal handler methods to objects which emit them.</p>
+<h1 id="ui-framework-design">UI Framework Design</h1>
+<p>The majority of the UI uses pygtk. The timeline portion also relies on
+goocanvas. This section is about the pygoocanvas portion of the UI.</p>
+<p>Objects visible in the timeline will either descend from or mix-in the
+View class, available in the view module. Instances of the view class
+create an instance of Controller which handles low-level input events
+and translates these into higher-level commands which it passes onto the
+model.</p>
+<h2 id="views">Views</h2>
+<p>View objects appear exclusively in the time-line component of the UI.
+Each view represents some object in the current timeline. Views must
+update their appearance when the object they represent changes. While in
+most cases, this will be accomplished by connecting to model signals, it
+is up to the individual view object to do this. No infrastructure is
+provided by the View base class. In general, views should multiply from
+View and some subclass of goocanvas.Item. The controller code connects
+to specific signals, and expects that these signals will have the same
+signature as defined in goocanvas.Item.</p>
+<p>Views provide a public interface for controlling appearance. There are 3
+independent visual states:</p>
+<ul>
+<li>focused/unfocused</li>
+<li>active/inactive</li>
+<li>selected/deselected.</li>
+</ul>
+<p>A fourth state, normal, is defined as being simultaneously unfocused,
+inactive, and deselected.</p>
+<h2 id="controllers">Controllers</h2>
+<p>View classes have a class attribute, Controller, which can be reference
+to BaseController. Views automatically instantiate and connect to an
+instance of this class during initialization. Derived Views can redefine
+this attribute to any subclass of Controller -- even one defined as an
+inner class -- if they wish to override default functionality. This
+design is intended to keep a tight integration between a View and its
+Controller.</p>
+<p>Controllers provide a high-level public interface for handling the
+following kinds of interaction</p>
+<ul>
+<li>key press events</li>
+<li>mouse clicks</li>
+<li>mouse drags</li>
+<li>focus changes</li>
+</ul>
+
+    </div>
+        
+
+
+
+
+		
+	</div>
+	<div id="search_results">
+		<p>The results of the search are</p>
+	</div>
+	<hr>
+	<div id="footer">
+		    
+
+	</div>
+</div>
+
+<div id="toc-column">
+	
+		<div class="edit-button">
+		<a href="https://gitlab.gnome.org/GNOME/pitivi/edit/master/docs/design/UI_Implementation.md" data-hotdoc-role="edit-button">Edit on GitLab</a>
+
+	</div>
+		<div id="toc-wrapper">
+		<nav id="toc"></nav>
+	</div>
+</div>
+</div>
+</main>
+
+</body>
+
+<script src="assets/js/navbar_offset_scroller.js"></script>
+</html>
