@@ -1,0 +1,18 @@
+@import "../../../../assets/styles/settings/colors";
+
+.authorizeWrapper {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  justify-content: flex-end;
+  margin-left: 21px;
+
+  span {
+    color: $player_secondary_button_color;
+    font-size: 12px;
+  }
+
+  span:hover {
+    cursor: pointer;
+  }
+}

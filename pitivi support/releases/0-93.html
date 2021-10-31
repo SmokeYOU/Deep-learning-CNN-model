@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<base href="..">
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<title>0.93 Release “Ra is a happy”</title>
+
+<link rel="stylesheet" href="assets/css/custom_bootstrap.css" type="text/css">
+<link rel="stylesheet" href="assets/css/bootstrap-toc.min.css" type="text/css">
+<link rel="stylesheet" href="assets/css/frontend.css" type="text/css">
+<link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css">
+
+<link rel="stylesheet" href="assets/css/prism.css" type="text/css">
+
+<script src="assets/js/mustache.min.js"></script>
+<script src="assets/js/jquery.js"></script>
+<script src="assets/js/scrollspy.js"></script>
+<script src="assets/js/bootstrap.js"></script>
+<script src="assets/js/typeahead.jquery.min.js"></script>
+<script src="assets/js/search.js"></script>
+<script src="assets/js/isotope.pkgd.min.js"></script>
+<script src="assets/js/compare-versions.js"></script>
+<script src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="assets/js/bootstrap-toc.min.js"></script>
+<script src="assets/js/jquery.touchSwipe.min.js"></script>
+<script src="assets/js/anchor.min.js"></script>
+<script src="assets/js/tag_filtering.js"></script>
+<script src="assets/js/language_switching.js"></script>
+
+<script src="assets/js/lines_around_headings.js"></script>
+
+<script src="assets/js/trie.js"></script>
+<script src="assets/js/prism-core.js"></script>
+<script src="assets/js/prism-autoloader.js"></script>
+<script src="assets/js/prism_autoloader_path_override.js"></script>
+
+<link rel="shortcut icon" href="assets/images/favicon.png">
+
+</head>
+
+<body class="no-script
+" data-spy="scroll" data-target="#toc" data-offset="70">
+
+<script>
+$('body').removeClass('no-script');
+</script>
+
+<nav class="navbar navbar-fixed-top navbar-default" id="topnav">
+	<div class="container-fluid">
+		<div class="navbar-right">
+			<a id="toc-toggle">
+				<span class="glyphicon glyphicon-menu-right"></span>
+				<span class="glyphicon glyphicon-menu-left"></span>
+			</a>
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-wrapper" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<form action="" class="navbar-form pull-right" id="navbar-search-form">
+                               <div class="form-group has-feedback">
+                                       <input type="text" class="form-control input-sm" name="search" id="sidenav-lookup-field" placeholder="search" disabled>
+				       <span class="glyphicon glyphicon-search form-control-feedback" id="search-mgn-glass"></span>
+                               </div>
+                        </form>
+		</div>
+		<div class="navbar-header">
+			<a id="sidenav-toggle">
+				<span class="glyphicon glyphicon-menu-right"></span>
+				<span class="glyphicon glyphicon-menu-left"></span>
+			</a>
+			<a id="home-link" href="index.html" class="hotdoc-navbar-brand">
+				<img src="assets/images/pitivi.svg" alt="Home">
+			</a>
+		</div>
+		<div class="navbar-collapse collapse" id="navbar-wrapper">
+			<ul class="nav navbar-nav" id="menu">
+							</ul>
+			<div class="hidden-xs hidden-sm navbar-text navbar-center">
+				<p><b>The Pitivi Developer Documentation</b></p>
+			</div>
+		</div>
+	</div>
+</nav>
+
+<main>
+<div data-extension="core" data-hotdoc-in-toplevel="True" data-hotdoc-project="Pitivi" data-hotdoc-ref="releases/0-93.html" class="page_container" id="page-wrapper">
+<script src="assets/js/utils.js"></script>
+
+<div class="panel panel-collapse oc-collapsed" id="sidenav" data-hotdoc-role="navigation">
+	<script src="assets/js/navigation.js"></script>
+	<script src="assets/js/sitemap.js"></script>
+</div>
+
+<div id="body">
+	<div id="main">
+				    <div id="page-description" data-hotdoc-role="main">
+        <h1 id="093-release-ra-is-a-happy">0.93 Release “Ra is a happy”</h1>
+<p>The Pitivi team is proud to announce the third release of the new
+version of Pitivi based on <a href="GES.html">GES</a>, the GStreamer Editing
+Services library. This is a incremental bugfixing release, so please
+make sure to see the <a href="releases/0-91.html">0.91</a> and <a href="releases/0-92.html">0.92</a>
+release notes to get the full picture.</p>
+<p>This is now considered a <strong>beta</strong> release. As per the feedback we've
+received since 0.91 and the many fixes we've made since then, we are
+confident that the new release series is of much higher quality than the
+0.15 series and older.</p>
+<p>This release works well for us and we make nice movies with it. Try it
+out, have fun and report detailed bugs for issues you may encounter!</p>
+<h2 id="changes-and-fixed-bugs">Changes and fixed bugs</h2>
+<p>Executive summary:</p>
+<ul>
+<li>Port the viewer and media file previewers to use a Clutter video
+output sink</li>
+<li>Visual refinements to the timeline (clip positioning, borders,
+selections)</li>
+<li>Improvements to the ruler and timecode display (cleaner
+representation, respects user theme colors and fonts, etc.)</li>
+<li>Allow importing MPEG-TS/AVCHD files. We are working towards
+improving the ts demuxer for nonlinear editing usecases.</li>
+<li>Fixes and improvements to the timeline's clip thumbnailers</li>
+<li>Clip thumbnailing in the media library, better import error handling
+(see also <a href="http://jeff.ecchi.ca/blog/2014/01/04/scratching-some-media-library-itches/">this blog
+post</a>)</li>
+<li>Various fixes to the application version checking</li>
+<li>Rework the way dependencies are checked on startup</li>
+<li>Make some features contextual and cleanup menus</li>
+<li>Many content updates to the user manual, thanks to Tomas Karger</li>
+<li>Papercut fixes to keyframe curves</li>
+<li>Various fixes for rendering, including:
+<ul>
+<li>Fix incorrectly setting project settings from clip properties</li>
+<li>Fix playback (and render) of DV files</li>
+<li>Fix rendering to MP4 container formats</li>
+<li>Fix rendering to MPEG-TS container formats (why in the world
+would you ever want to do that?)</li>
+<li>Fix a bug in GES where files would sometimes be rendered with no
+video stream</li>
+<li>Usability improvements and minor bug fixes</li>
+</ul>
+</li>
+<li>Fix pylint errors</li>
+<li>Various fixes to the automated test suite</li>
+<li>Code refactoring and cleanup all over the place</li>
+<li>Fixes for AppData XML spec compliance</li>
+<li>Various build and packaging fixes</li>
+<li>Translations have been updated</li>
+</ul>
+<p>See the list of <a href="https://bugzilla.gnome.org/buglist.cgi?product=pitivi;target_milestone=0.93">reported bugs that have been resolved in
+0.93</a>.</p>
+<p>Since the 0.92 release, 403 commits were made across 166 files. Here is
+a summary of some noteworthy commits:</p>
+<pre><code>8f5d7a3 timeline: Fix dragging an asset to the ruler
+bbff99d project: Default to a square pixel aspect ratio
+489d514 clipmediaprops: Prevent setting an invalid framerate from a misdetected clip
+6ca7dd0 mainwindow: Actually use DAR (not PAR) to set the viewer's display aspect ratio
+6401261 project: Emit “rendering-settings-changed” when the pixel aspect ratio changes
+b272f07 project: Flush the pipeline when we set restriction caps
+17fee0c viewer: Add a button to undock the viewer directly instead of using menu actions
+771db7e clipmediaprops: Allow closing the dialog with ESC
+25ab268 Show the full pathname in the tooltip for an asset
+2167d95 elements: Fix lines appearing a bit to the left
+0ff3bae elements: Make sure the line remains straight when adding a keyframe when clicked
+9a71127 mainwindow: Allow pressing ESC or q to close the preview asset window
+dfc908c tests: Skip TestGnomeSystem.testPowerInhibition if the power is inhibited
+5ffd50e timeline: Handle only the key-press/release events on the timeline
+5440803 elements: Fix video clips keyframes and lines vertical position
+e54f0f5 clipproperties: Fix effect selection in the clip properties tab
+7d3268b mainwindow: Short and consistent names for the context tabs
+2a0b442 mainwindow: Show by default the title editor tab
+1df29a8 medialibrary: Add half space unit at the left of the search field
+b41a661 elements: Avoid 0-sized clips to become invisible
+f0e557d widgets: Use the zoom slider tooltip to display the duration of the displayed timeline
+a0b86d8 widgets: Simplify the zoom controls logic
+86eb6ce widgets: Handle smooth scroll events on the zoom slider
+f0f4f33 render: Allow the render progress dialog to close the desktop notification
+fe2d994 mainwindow: Make the version display more robust in the about window
+2b02155 tests: Allow the tests to be run by frameworks like nosetests
+a96c7d6 bin: Make sure we use python2 when python3 is the default
+510354e mediafilespreviewer: Keep the PreviewWidget size fixed
+b1c3d59 mainwindow: Move the preview window size logic to a new method
+0f0bd6b viewer: Make the AspectFrame part of the ViewerWidget
+ea0149f viewer: Focus back the timeline when using the buttons
+bd809c5 ruler: Remove hardcoded background color
+b54e840 ruler: Use the same color for the entire playhead
+614d70f ruler: Fix the play header display
+1c0181b viewer: Add spacing around the play buttons
+7734ff6 widgets: Hide the zero hour in the time widget
+25107dc timeline: Make the timeline toolbar and scrollbars background transparent
+944ff5e render: Fix the video codec settings saving
+7215321 check: Make GnomeDesktop a soft dependency
+946b99f ruler: Use system font
+3f78e85 ruler: Show the hours and millis only if useful
+7a301c8 ruler: Use a smaller font for the millis
+d9ea434 elements: Remove margins between clips
+cb89963 timeline: Fix the scrollbars alignment by using Gtk.Grid
+88790fb elements: Change the border color when a clip is selected
+5cc89e3 elements: Keep the handlebars hidden when the clip is selected
+1af6c48 pipeline: Handle negative position when pausing
+3b6ecb1 timeline: Fix stacktrace when clicking handlebar
+3fd9b9a previewers: Fix stacktrace when removing a clip
+cbe8af7 timeline: Insert the clip at the end of the longest layer
+8551d7d widgets: Fix the zoom slider not showing the initial zoom value
+3d19f44 timeline: Avoid zooming in when setting the best zoom ratio
+ef3f62a timeline: connect to the whole GUI to end marquee selection.
+7395094 project: cast remaining uncasted restriction fields.
+1f3bf84 viewer: Use an AspectFrame widget in the external viewer, like the internal one
+75c01e5 medialibrary: Generate thumbnails in the background
+bf95c04 medialibrary: Automatically generate missing thumbnails
+5cab48d Use icon_name all over the place, as stock icons are deprecated in GTK+ 3.10
+8f031df Make the timeline insensitive during rendering by hijacking all events
+afca76e previewers: Remove duplicated CPU tracking code
+7e6b273 previewers: Set the thumbnail pixbuf in a single place
+c9616fc previewers: Optimize thumbnails reuse
+c296ebf previewers: Do not fail if thumbnail timestamp is not the requested one
+3ef0717 medialibrary: Allow importing MTS files
+e765314 medialibrary: Show the amount of errors with ngettext in warning_infobar
+ccb2ce3 medialibrary.ui: Use a smaller, symbolic label for warning_infobar close button
+7ea7245 medialibrary: Correctly represent imported vs total clips in the progressbar
+7061503 All around: fix positional arguments warnings
+a66be04 bin/pitivi.in : Don't call GObject.threads_init if pygobject is recent enough.
+2e56e51 Update the app icon
+96bc43a system: When the notification daemon is dead get over it
+38861f7 system: Use the system instance for displaying notifications
+c2fb6f8 Render: don't use the caps name for the muxer / encoder caps.
+6933a56 Make pitivi.appdata.xml more translation-friendly and pass appdata-validate
+</code></pre>
+<h2 id="requirements">Requirements</h2>
+<p>Dependencies/requirements have changed significantly since the 0.15
+series, but have stayed mostly the same since <a href="releases/0-92.html">0.92</a>.
+For this release, we depend on GStreamer, GNonLin and GES 1.2.</p>
+<p>Generally speaking, you can refer to Pitivi's check.py for the
+dependencies' versions specific to a given release. See also
+<a href="attic/Dependencies.md">dependencies</a> for additional tips.</p>
+<h2 id="known-issues">Known issues</h2>
+<p>See the list of <a href="https://bugzilla.gnome.org/buglist.cgi?query_format=advanced;bug_severity=blocker;bug_severity=critical;bug_severity=major;bug_severity=normal;bug_severity=minor;bug_severity=trivial;bug_status=NEW;bug_status=ASSIGNED;bug_status=REOPENED;product=pitivi">currently known
+issues</a>,
+the <a href="https://bugzilla.gnome.org/buglist.cgi?query_format=advanced&amp;version=0.91&amp;version=0.92&amp;version=0.93&amp;resolution=---&amp;product=pitivi">0.91, 0.92 and 0.93-specific
+issues</a>
+and the list of <a href="https://bugzilla.gnome.org/buglist.cgi?query_format=advanced;bug_status=NEEDINFO;target_milestone=0.91;product=pitivi">bugs that need re-testing with
+0.91</a>
+(you can help!)</p>
+<p>You may also want to see the <a href="releases/0-91.html">0.91</a> release notes'
+“known issues” section.</p>
+<h1 id="contributors-for-this-release">Contributors for this release</h1>
+<p>In Pitivi:</p>
+<pre><code>234  Alexandru Băluț
+ 44  Mathieu Duponchelle
+ 33  Tomas Karger
+ 27  Jean-François Fortin Tam
+  6  Thibault Saunier
+  1  Jakub Steiner
+  1  Olivier Duchateau
+</code></pre>
+<p>In GES:</p>
+<pre><code>38  Thibault Saunier
+ 4  Alexandru Băluț
+ 4  Sebastian Dröge
+ 3  Dan Williams
+ 3  Mathieu Duponchelle
+ 3  Tim-Philipp Müller
+ 2  Kishore Arepalli
+ 1  Andreas Schwab
+ 1  Edward Hervey
+ 1  Lubosz Sarnecki
+ 1  Stefan Sauer
+</code></pre>
+<p>Translations:</p>
+<pre><code>   cs  Marek Černocký
+   de  Benjamin Steinwender, Marcel Tiede
+   el  Dimitris Spingos
+   eo  Kristjan SCHMIDT
+   es  Daniel Mustieles
+   fr  Jean-François Fortin Tam
+   hu  Gabor Kelemen
+   lt  Aurimas Černius
+   pl  Piotr Drąg
+pt_BR  Rafael Ferreira, Enrico Nicoletto
+   sl  Matej Urbančič
+   sr  Мирослав Николић
+   tr  Volkan Gezer
+   uk  Daniel Korostil
+zh_HK  Cheng-Chia Tseng
+zh_TW  Cheng-Chia Tseng
+</code></pre>
+<h1 id="download-additional-information-and-feedback">Download, additional information and feedback</h1>
+<p>A tarball is available on
+<a href="http://ftp.gnome.org/pub/GNOME/sources/pitivi/0.93/">http://ftp.gnome.org/pub/GNOME/sources/pitivi/0.93/</a></p>
+<p>See <a href="http://www.pitivi.org">the Pitivi website</a> and <a href="attic/building_with_ges.html">building with
+GES</a> for download and installation
+instructions.</p>
+<p>Feedback is welcome. See <a href="Bug_reporting.html">bug reporting</a> for
+tips and tricks.</p>
+
+    </div>
+        
+
+
+
+
+		
+	</div>
+	<div id="search_results">
+		<p>The results of the search are</p>
+	</div>
+	<hr>
+	<div id="footer">
+		    
+
+	</div>
+</div>
+
+<div id="toc-column">
+	
+		<div class="edit-button">
+		<a href="https://gitlab.gnome.org/GNOME/pitivi/edit/master/docs/releases/0.93.md" data-hotdoc-role="edit-button">Edit on GitLab</a>
+
+	</div>
+		<div id="toc-wrapper">
+		<nav id="toc"></nav>
+	</div>
+</div>
+</div>
+</main>
+
+</body>
+
+<script src="assets/js/navbar_offset_scroller.js"></script>
+</html>

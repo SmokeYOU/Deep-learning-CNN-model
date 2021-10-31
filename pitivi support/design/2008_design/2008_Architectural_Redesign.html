@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<base href="../..">
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<title>2008 Architectural Redesign</title>
+
+<link rel="stylesheet" href="assets/css/custom_bootstrap.css" type="text/css">
+<link rel="stylesheet" href="assets/css/bootstrap-toc.min.css" type="text/css">
+<link rel="stylesheet" href="assets/css/frontend.css" type="text/css">
+<link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css">
+
+<link rel="stylesheet" href="assets/css/prism.css" type="text/css">
+
+<script src="assets/js/mustache.min.js"></script>
+<script src="assets/js/jquery.js"></script>
+<script src="assets/js/scrollspy.js"></script>
+<script src="assets/js/bootstrap.js"></script>
+<script src="assets/js/typeahead.jquery.min.js"></script>
+<script src="assets/js/search.js"></script>
+<script src="assets/js/isotope.pkgd.min.js"></script>
+<script src="assets/js/compare-versions.js"></script>
+<script src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="assets/js/bootstrap-toc.min.js"></script>
+<script src="assets/js/jquery.touchSwipe.min.js"></script>
+<script src="assets/js/anchor.min.js"></script>
+<script src="assets/js/tag_filtering.js"></script>
+<script src="assets/js/language_switching.js"></script>
+
+<script src="assets/js/lines_around_headings.js"></script>
+
+<script src="assets/js/trie.js"></script>
+<script src="assets/js/prism-core.js"></script>
+<script src="assets/js/prism-autoloader.js"></script>
+<script src="assets/js/prism_autoloader_path_override.js"></script>
+
+<link rel="shortcut icon" href="assets/images/favicon.png">
+
+</head>
+
+<body class="no-script
+" data-spy="scroll" data-target="#toc" data-offset="70">
+
+<script>
+$('body').removeClass('no-script');
+</script>
+
+<nav class="navbar navbar-fixed-top navbar-default" id="topnav">
+	<div class="container-fluid">
+		<div class="navbar-right">
+			<a id="toc-toggle">
+				<span class="glyphicon glyphicon-menu-right"></span>
+				<span class="glyphicon glyphicon-menu-left"></span>
+			</a>
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-wrapper" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<form action="" class="navbar-form pull-right" id="navbar-search-form">
+                               <div class="form-group has-feedback">
+                                       <input type="text" class="form-control input-sm" name="search" id="sidenav-lookup-field" placeholder="search" disabled>
+				       <span class="glyphicon glyphicon-search form-control-feedback" id="search-mgn-glass"></span>
+                               </div>
+                        </form>
+		</div>
+		<div class="navbar-header">
+			<a id="sidenav-toggle">
+				<span class="glyphicon glyphicon-menu-right"></span>
+				<span class="glyphicon glyphicon-menu-left"></span>
+			</a>
+			<a id="home-link" href="index.html" class="hotdoc-navbar-brand">
+				<img src="assets/images/pitivi.svg" alt="Home">
+			</a>
+		</div>
+		<div class="navbar-collapse collapse" id="navbar-wrapper">
+			<ul class="nav navbar-nav" id="menu">
+							</ul>
+			<div class="hidden-xs hidden-sm navbar-text navbar-center">
+				<p><b>The Pitivi Developer Documentation</b></p>
+			</div>
+		</div>
+	</div>
+</nav>
+
+<main>
+<div data-extension="core" data-hotdoc-in-toplevel="True" data-hotdoc-project="Pitivi" data-hotdoc-ref="design/2008_design/2008_Architectural_Redesign.html" class="page_container" id="page-wrapper">
+<script src="assets/js/utils.js"></script>
+
+<div class="panel panel-collapse oc-collapsed" id="sidenav" data-hotdoc-role="navigation">
+	<script src="assets/js/navigation.js"></script>
+	<script src="assets/js/sitemap.js"></script>
+</div>
+
+<div id="body">
+	<div id="main">
+				    <div id="page-description" data-hotdoc-role="main">
+        <h1 id="2008-architectural-redesign">2008 Architectural Redesign</h1>
+<p>New architectural redesign for PiTiVi done in 2008. This page (and its
+children) are obsolete and kept mostly for historical purposes.</p>
+<h2 id="components">Components</h2>
+<p>The following documents are supposed to be read in order:</p>
+<ol>
+<li>
+<a href="design/2008_design/2008_Architectural_Redesign/High-level_Design.html">High Level
+design</a>
+This is an overview of the new design of PiTiVi. Read this first.</li>
+<li>
+<a href="design/2008_design/2008_Architectural_Redesign/Project.html">Project</a>
+Specifications of the <strong>Project</strong> object</li>
+<li>
+<a href="design/2008_design/2008_Architectural_Redesign/ObjectFactory.html">ObjectFactory</a>
+Specifications of <strong>ObjectFactory</strong> and it's known
+subclasses/interfaces.</li>
+<li>
+<a href="design/2008_design/2008_Architectural_Redesign/Streams.html">Streams</a>
+Specifications of <strong>Stream</strong>s.</li>
+<li>
+<a href="design/2008_design/2008_Architectural_Redesign/Pipeline.html">Pipeline</a>
+Specifications of <strong>Pipeline</strong>, and the interaction between
+<strong>Pipeline</strong> and <strong>Action/Consumer/Producer</strong>.</li>
+<li>
+<a href="design/2008_design/2008_Architectural_Redesign/Timeline.html">Timeline</a>
+Specifications of the <strong>Timeline</strong> and the <strong>TimelineObject</strong>s</li>
+<li>
+<a href="design/2008_design/2008_Architectural_Redesign/Tracks.md">Tracks</a>
+Specifications of the timeline's <strong>Track</strong>s and the <strong>TrackObject</strong>s</li>
+<li>
+<a href="design/2008_design/2008_Architectural_Redesign/Formatter.html">Formatter</a>
+Specifications of the <strong>Formatter</strong>(s) and the interaction with
+other parts of Core.</li>
+<li>
+<a href="design/2008_design/2008_Architectural_Redesign/Browsers.html">Browsers</a>
+Specifications of the various <strong>Browsers</strong>s and their interaction
+with other parts of Core.</li>
+</ol>
+<h2 id="other-pages">Other pages</h2>
+<ul>
+<li><a href="design/2008_design/2008_Architectural_Redesign/Design_Thoughts.html">Design
+Thoughts</a></li>
+<li><a href="design/2008_design/2008_UI_Design.html">2008 UI Design</a></li>
+</ul>
+<p>Yet more historical pages that predated this redesign initiative:</p>
+<ul>
+<li><a href="design/UI_Implementation.html">UI Implementation</a></li>
+<li><a href="design/Multi-Layer_Editing.html">Multi-Layer Editing</a></li>
+<li><a href="design/Plugins.html">Plugins</a></li>
+<li><a href="design/2008_design/2008_Plugin_Interface_development.html">2008 Plugin Interface
+development</a></li>
+<li><a href="attic/Project_loading_and_saving.html">Project loading and saving</a></li>
+<li><a href="attic/Project_file_format.html">Project file format</a></li>
+</ul>
+
+    </div>
+        
+
+
+
+
+		<div id="subpages">
+	<p><b>Subpages:</b></p>
+			<p>
+		<a href="design/2008_design/2008_Architectural_Redesign/High-level_Design.html">High-level Design</a>
+		–
+					<i><em>No description available</em></i>
+				</p>
+			<p>
+		<a href="design/2008_design/2008_Architectural_Redesign/Project.html">Project</a>
+		–
+					<i><em>No description available</em></i>
+				</p>
+			<p>
+		<a href="design/2008_design/2008_Architectural_Redesign/ObjectFactory.html">ObjectFactory</a>
+		–
+					<i><em>No description available</em></i>
+				</p>
+			<p>
+		<a href="design/2008_design/2008_Architectural_Redesign/Streams.html">Streams</a>
+		–
+					<i><em>No description available</em></i>
+				</p>
+			<p>
+		<a href="design/2008_design/2008_Architectural_Redesign/Pipeline.html">Pipeline</a>
+		–
+					<i><em>No description available</em></i>
+				</p>
+			<p>
+		<a href="design/2008_design/2008_Architectural_Redesign/Timeline.html">Timeline</a>
+		–
+					<i><em>No description available</em></i>
+				</p>
+			<p>
+		<a href="design/2008_design/2008_Architectural_Redesign/Formatter.html">Formatter</a>
+		–
+					<i><em>No description available</em></i>
+				</p>
+			<p>
+		<a href="design/2008_design/2008_Architectural_Redesign/Browsers.html">Browsers</a>
+		–
+					<i><em>No description available</em></i>
+				</p>
+			<p>
+		<a href="design/2008_design/2008_Architectural_Redesign/Design_Thoughts.html">Design Thoughts</a>
+		–
+					<i><em>No description available</em></i>
+				</p>
+	</div>
+	</div>
+	<div id="search_results">
+		<p>The results of the search are</p>
+	</div>
+	<hr>
+	<div id="footer">
+		    
+
+	</div>
+</div>
+
+<div id="toc-column">
+	
+		<div class="edit-button">
+		<a href="https://gitlab.gnome.org/GNOME/pitivi/edit/master/docs/design/2008_design/2008_Architectural_Redesign.md" data-hotdoc-role="edit-button">Edit on GitLab</a>
+
+	</div>
+		<div id="toc-wrapper">
+		<nav id="toc"></nav>
+	</div>
+</div>
+</div>
+</main>
+
+</body>
+
+<script src="assets/js/navbar_offset_scroller.js"></script>
+</html>
