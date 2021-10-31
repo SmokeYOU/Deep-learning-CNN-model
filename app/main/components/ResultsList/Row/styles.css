@@ -1,0 +1,62 @@
+/**
+ * TODO: colors should be moved to variables
+ */
+.row {
+  position: relative;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  align-items: flex-start;
+  white-space: nowrap;
+  width: 100%;
+  cursor: pointer;
+  box-sizing: border-box;
+  height: 45px;
+  padding: 3px 5px;
+  align-items: center;
+  color: var(--main-font-color);
+  background: var(--result-background);
+}
+
+.icon {
+  max-height: 30px;
+  max-width: 30px;
+  margin-right: 5px;
+}
+
+.title {
+  font-size: .8em;
+  max-width: 100%;
+  /* overflow-x: hidden; */
+  color: var(--result-title-color);
+}
+
+
+.subtitle {
+  font-size: 0.8em;
+  font-weight: 300;
+  color: var(--result-subtitle-color);
+  max-width: 100%;
+  /* overflow-x: hidden; */
+}
+
+.selected {
+  background: var(--selected-result-background);
+  .title {
+    color: var(--selected-result-title-color);
+  }
+  .subtitle {
+    color: var(--selected-result-subtitle-color);
+  }
+}
+
+.details {
+  position: relative;
+  display: flex;
+  flex-grow: 2;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  height: 90%;
+}
